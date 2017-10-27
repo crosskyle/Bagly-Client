@@ -1,0 +1,36 @@
+{
+  "name": "material",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "classnames": "^2.2.5",
+    "flexboxgrid": "^6.3.1",
+    "lodash": "^4.17.4",
+    "material-ui": "^0.19.2",
+    "material-ui-icons": "^1.0.0-beta.10",
+    "material-ui-next": "npm:material-ui@next",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dnd": "^2.5.1",
+    "react-dnd-html5-backend": "^2.5.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-swipeable-views": "^0.12.8",
+    "react-vis": "^1.7.7",
+    "redux": "^3.7.2",
+    "redux-form": "^7.0.4",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.13"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
