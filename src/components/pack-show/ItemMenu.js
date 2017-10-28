@@ -1,14 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { updateItem, removeItemFromList } from '../../actions/index'
-import FlatButton from 'material-ui/FlatButton'
-import TextField from 'material-ui/TextField'
-import Checkbox from 'material-ui/Checkbox'
-import Dialog from 'material-ui/Dialog'
+
 import MenuItem from 'material-ui/MenuItem'
 import IconMenu from 'material-ui/IconMenu'
 import IconButton from 'material-ui/IconButton'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+
+import Button from 'material-ui-next/Button'
+import TextField from 'material-ui-next/TextField'
+import Checkbox from 'material-ui-next/Checkbox'
+import { FormControlLabel, FormGroup } from 'material-ui-next/Form'
+import Dialog, {
+  DialogContent,
+  DialogTitle,
+} from 'material-ui-next/Dialog'
+import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui-next/styles'
+
+const styles = theme => ({
+
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    border: 'yellow',
+    width: 200,
+  }
+})
 
 const columnStyle = {
   marginLeft: '0em',
@@ -50,7 +68,7 @@ class ItemMenu extends Component {
 
   render() {
 
-    const { item, category, pack } = this.props
+    const { classes, item, category, pack } = this.props
 
     return (
       <div>
@@ -77,108 +95,118 @@ class ItemMenu extends Component {
           />
         </IconMenu>
 
-        <Dialog
-          title="Edit an Item"
-          open={this.state.open}
-          modal={false}
-          onRequestClose={() => this.setState({open: false})}
-        >
-          <form onSubmit={this.onFormSubmit}>
-            <TextField
-              name="title"
-              floatingLabelText="Name"
-              value={this.state.item.title}
-              onChange={(event) => {
-                this.setState({
-                  item: {
-                    ...this.state.item,
-                    title: event.target.value,
+        <Dialog open={this.state.open}  onRequestClose={() => this.setState({open: false})}>
+          <DialogTitle>{'Add an Item'}</DialogTitle>
+          <DialogContent>
+            <form onSubmit={this.onFormSubmit}>
+              <TextField
+                label="Name"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.item.title}
+                onChange={(event) => {
+                  this.setState({
+                    item: {
+                      ...this.state.item,
+                      title: event.target.value,
+                    }
+                  })
+                }}
+              />
+              <TextField
+                label="Description"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.item.description}
+                onChange={(event) => {
+                  this.setState({
+                    item: {
+                      ...this.state.item,
+                      description: event.target.value,
+                    }
+                  })
+                }}
+              />
+              <TextField
+                label="Weight"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.item.weight}
+                onChange={(event) => {
+                  this.setState({
+                    item: {
+                      ...this.state.item,
+                      weight: event.target.value,
+                    }
+                  })
+                }}
+              />
+              <TextField
+                label="Quantity"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.item.quantity}
+                onChange={(event) => {
+                  this.setState({
+                    item: {
+                      ...this.state.item,
+                      quantity: event.target.value,
+                    }
+                  })
+                }}
+              />
+              <FormGroup row>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.item.worn}
+                      onChange={() => {
+                        this.setState({
+                          item: {
+                            ...this.state.item,
+                            consumable: !this.state.item.worn
+                          }
+                        })
+                      }}
+                    />
                   }
-                })
-              }}
-            />
-            <TextField
-              name="description"
-              floatingLabelText="Description"
-              value={this.state.item.description}
-              onChange={(event) => {
-                this.setState({
-                  item: {
-                    ...this.state.item,
-                    description: event.target.value,
+                  label="Worn"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.item.consumable}
+                      onChange={() => {
+                        this.setState({
+                          item: {
+                            ...this.state.item,
+                            consumable: !this.state.item.consumable
+                          }
+                        })
+                      }}
+                    />
                   }
-                })
-              }}
-            />
-            <TextField
-              name="weight"
-              floatingLabelText="Weight"
-              value={this.state.item.weight}
-              onChange={(event) => {
-                this.setState({
-                  item: {
-                    ...this.state.item,
-                    weight: event.target.value,
-                  }
-                })
-              }}
-            />
-            <TextField
-              name="quantity"
-              floatingLabelText="Quantity"
-              value={this.state.item.quantity}
-              onChange={(event) => {
-                this.setState({
-                  item: {
-                    ...this.state.item,
-                    quantity: event.target.value,
-                  }
-                })
-              }}
-            />
-            <Checkbox
-              name="worn"
-              label="Worn"
-              checked={this.state.item.worn}
-              onCheck={() => {
-                this.setState({
-                  item: {
-                    ...this.state.item,
-                    worn: !this.state.item.worn,
-                  }
-                })
-              }}
-            />
-            <Checkbox
-              name="consumable"
-              label="Consumable"
-              checked={this.state.item.consumable}
-              onCheck={() => {
-                this.setState({
-                  item: {
-                    ...this.state.item,
-                    consumable: !this.state.item.consumable
-                  }
-                })
-              }}
-            />
-            <FlatButton
-              label="Cancel"
-              style={{color: '#3f51b5'}}
-              onClick={() => this.setState({open: false})}
-            />
-            <FlatButton
-              type="submit"
-              label="Submit"
-              style={{color: '#3f51b5'}}
-              onClick={() => this.setState({open: false})}
-            />
-          </form>
+                  label="Consumable"
+                />
+              </FormGroup>
+              <Button color="primary" onClick={() => this.setState({open: false})}>
+                Cancel
+              </Button>
+              <Button type="submit" color="primary" onClick={() => this.setState({open: false})}>
+                Submit
+              </Button>
+            </form>
+          </DialogContent>
         </Dialog>
       </div>
-
     )
   }
 }
+
+ItemMenu.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+ItemMenu = withStyles(styles)(ItemMenu)
 
 export default connect(null, { updateItem, removeItemFromList })(ItemMenu)

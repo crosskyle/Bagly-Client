@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createItemInCategory } from '../../actions/index'
-import FlatButton from 'material-ui/FlatButton'
 import Button from 'material-ui-next/Button'
-import TextField from 'material-ui/TextField'
-import Checkbox from 'material-ui/Checkbox'
-import Dialog from 'material-ui/Dialog';
+import TextField from 'material-ui-next/TextField'
+import Checkbox from 'material-ui-next/Checkbox'
+import { FormControlLabel, FormGroup } from 'material-ui-next/Form'
+import Dialog, {
+  DialogContent,
+  DialogTitle,
+} from 'material-ui-next/Dialog'
+import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui-next/styles'
+
+const styles = theme => ({
+
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    border: 'yellow',
+    width: 200,
+  }
+})
 
 class ItemAddModal extends Component {
 
@@ -57,96 +72,108 @@ class ItemAddModal extends Component {
   }
 
   render() {
+
+    const { classes } = this.props
+
     return (
       <div>
-        <Button
-          color="primary"
-          onClick={this.handleOpen}
-        >
+        <Button color="primary" onClick={this.handleOpen}>
           Add an item
         </Button>
-        <Dialog
-          title="Add an Item"
-          open={this.state.open}
-          modal={false}
-          onRequestClose={() => this.setState({open: false})}
-        >
-          <form onSubmit={this.onFormSubmit}>
-            <TextField
-              name="title"
-              floatingLabelText="Name"
-              value={this.state.title}
-              onChange={(event) => {
-                this.setState({
-                  title: event.target.value
-                })
-              }}
-            />
-            <TextField
-              name="description"
-              floatingLabelText="Description"
-              value={this.state.description}
-              onChange={(event) => {
-                this.setState({
-                  description: event.target.value
-                })
-              }}
-            />
-            <TextField
-              name="weight"
-              floatingLabelText="Weight"
-              value={this.state.weight}
-              onChange={(event) => {
-                this.setState({
-                  weight: event.target.value
-                })
-              }}
-            />
-            <TextField
-              name="quantity"
-              floatingLabelText="Quantity"
-              value={this.state.quantity}
-              onChange={(event) => {
-                this.setState({
-                  quantity: event.target.value
-                })
-              }}
-            />
-            <Checkbox
-              name="worn"
-              label="Worn"
-              value={this.state.term}
-              onCheck={() => {
-                this.setState({
-                  worn: !(this.state.worn)
-                })
-              }}
-            />
-            <Checkbox
-              name="consumable"
-              label="Consumable"
-              onCheck={() => {
-                this.setState({
-                  consumable: !(this.state.consumable)
-                })
-              }}
-            />
-            <FlatButton
-              label="Cancel"
-              style={{color: '#3f51b5'}}
-              onClick={this.handleClose}
-            />
-            <FlatButton
-              type="submit"
-              label="Submit"
-              style={{color: '#3f51b5'}}
-              onClick={this.handleClose}
-            />
-          </form>
+        <Dialog open={this.state.open} onRequestClose={() => this.setState({open: false})}>
+          <DialogTitle>{'Add an Item'}</DialogTitle>
+          <DialogContent>
+            <form onSubmit={this.onFormSubmit}>
+              <TextField
+                label="Title"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.title}
+                onChange={(event) => {
+                  this.setState({
+                    title: event.target.value
+                  })
+                }}
+              />
+              <TextField
+                label="Description"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.description}
+                onChange={(event) => {
+                  this.setState({
+                    description: event.target.value
+                  })
+                }}
+              />
+              <TextField
+                label="Weight"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.weight}
+                onChange={(event) => {
+                  this.setState({
+                    weight: event.target.value
+                  })
+                }}
+              />
+              <TextField
+                label="Quantity"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.quantity}
+                onChange={(event) => {
+                  this.setState({
+                    quantity: event.target.value
+                  })
+                }}
+              />
+              <FormGroup row>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.worn}
+                      onChange={(event) => {
+                        this.setState({
+                          worn: event.target.checked
+                        })
+                      }}
+                    />
+                  }
+                  label="Worn"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.consumable}
+                      onChange={(event) => {
+                        this.setState({
+                          consumable: event.target.checked
+                        })
+                      }}
+                    />
+                  }
+                  label="Consumable"
+                />
+              </FormGroup>
+              <Button color="primary" onClick={this.handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit" color="primary" onClick={this.handleClose}>
+                Submit
+              </Button>
+            </form>
+          </DialogContent>
         </Dialog>
       </div>
     )
   }
 }
+
+ItemAddModal.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+ItemAddModal = withStyles(styles)(ItemAddModal)
 
 export default connect(null, { createItemInCategory })(ItemAddModal)

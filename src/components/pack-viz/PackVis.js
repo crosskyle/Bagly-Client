@@ -109,7 +109,7 @@ class PackVis extends Component {
 
     if (!this.state.vertical) {
       return (
-        <div style={{marginTop: 10}}>
+        <div style={{marginTop: 30}}>
           <FlexibleXYPlot
             stackBy="x"
             margin={{left: 90, right: 40}}

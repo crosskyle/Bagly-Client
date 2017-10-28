@@ -91,6 +91,8 @@ class PackEditModal extends Component {
         </Dialog>
         <br/>
         <span style={{textAlign: 'left', marginLeft: 30}}>{this.props.pack.description}</span>
+        <br/>
+        <br/>
       </div>
     )
   }

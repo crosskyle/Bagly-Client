@@ -5,7 +5,7 @@ const styles = theme => ({
     width: '100%',
     height: '100vh',
     zIndex: 1,
-    overflow: 'hidden',
+    overflow: 'auto',
   },
   appFrame: {
     position: 'relative',
