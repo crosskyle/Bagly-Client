@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DragSource } from 'react-dnd'
-import { ItemTypes } from './drag-n-drop/constants'
-import { deleteItem, putItemInCategory } from '../actions'
+import { ItemTypes } from '../drag-n-drop/constants'
+import { deleteItem, putItemInCategory } from '../../actions/index'
 import { ListItem,
   ListItemText,
   ListItemSecondaryAction,

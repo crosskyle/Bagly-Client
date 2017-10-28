@@ -22,10 +22,10 @@ import IconButton from 'material-ui-next/IconButton';
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
-import PacksIndex from './PacksIndex'
-import ItemsIndex from './ItemsIndex'
-import PacksShow from './PacksShow'
-import PackVis from './PackVis'
+import PacksIndex from './drawer/PacksIndex'
+import ItemsIndex from './drawer/ItemsIndex'
+import PacksShow from './pack-show/PacksShow'
+import PackVis from './pack-viz/PackVis'
 
 
 

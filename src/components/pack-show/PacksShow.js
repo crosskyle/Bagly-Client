@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import PackEditModal from './PackEditModal'
+import PackEditModal from './PackEdit'
 import PacksTable from './PacksTable'
 import CategoryAddModal from './CategoryAddModal'
 

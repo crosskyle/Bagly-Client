@@ -10,8 +10,8 @@ import reducers from './reducers/index'
 import {AUTH_USER, READ_USER} from "./actions/types"
 import App from './components/App'
 import Welcome from './components/Welcome'
-import PrivateRoute from './components/PrivateRoute'
-import AuthRoute from './components/AuthRoute'
+import PrivateRoute from './components/routes/PrivateRoute'
+import AuthRoute from './components/routes/AuthRoute'
 import registerServiceWorker from './registerServiceWorker'
 
 const createStoreWithMiddleware = applyMiddleware(promise, reduxThunk)(createStore)

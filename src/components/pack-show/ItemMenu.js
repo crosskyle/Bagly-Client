@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateItem, removeItemFromList } from '../actions'
+import { updateItem, removeItemFromList } from '../../actions/index'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 import Checkbox from 'material-ui/Checkbox'

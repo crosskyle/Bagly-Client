@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Item from './Item'
-import { readItems } from '../actions'
+import { readItems } from '../../actions/index'
 import List from 'material-ui-next/List'
 
 class ItemsIndex extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createCategory } from '../actions'
+import { createCategory } from '../../actions/index'
 import FlatButton from 'material-ui/FlatButton'
 import Button from 'material-ui-next/Button'
 import TextField from 'material-ui/TextField'

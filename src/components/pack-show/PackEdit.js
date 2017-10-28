@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import EditIcon from 'material-ui/svg-icons/content/create'
-import IconButton from 'material-ui/IconButton'
-import IconButtonNext from 'material-ui-next/IconButton'
+import IconButton from 'material-ui-next/IconButton'
 import DeleteIcon from 'material-ui-icons/Delete'
+import EditIcon from 'material-ui-icons/Create'
 import { connect } from 'react-redux'
-import { updatePack, deletePack } from '../actions'
+import { updatePack, deletePack } from '../../actions/index'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
 import Dialog from 'material-ui/Dialog'
@@ -43,20 +42,21 @@ class PackEditModal extends Component {
       <div>
         <span style={{textAlign: 'left', marginLeft: 30}}>{this.props.pack.title}</span>
         <IconButton
+          aria-label="Edit"
           onClick={() => this.setState({open: true})}
-          style={{ paddingRight: '0px', paddingBottom: '6px',
-            verticalAlign: 'middle', textAlign: 'right', paddingTop: "0px", MarginTop: "0em"}}
+          style={{ paddingBottom: '6px', paddingLeft: '15px',
+            verticalAlign: 'middle'}}
         >
-          <EditIcon />
+          <EditIcon style={{color: "#D3D3D3"}}/>
         </IconButton>
-        <IconButtonNext
+        <IconButton
           aria-label="Delete"
           onClick={() => this.props.deletePack(this.props.pack.id)}
-          style={{ paddingRight: '0px', paddingBottom: '6px',
-            verticalAlign: 'middle', textAlign: 'right', paddingTop: "0px", MarginTop: "0em"}}
+          style={{ paddingBottom: '6px',
+            verticalAlign: 'middle' }}
         >
           <DeleteIcon style={{color: "#D3D3D3"}}/>
-        </IconButtonNext>
+        </IconButton>
         <Dialog
           title="Edit Pack"
           open={this.state.open}
@@ -89,6 +89,8 @@ class PackEditModal extends Component {
             />
           </form>
         </Dialog>
+        <br/>
+        <span style={{textAlign: 'left', marginLeft: 30}}>{this.props.pack.description}</span>
       </div>
     )
   }

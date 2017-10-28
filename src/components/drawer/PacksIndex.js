@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { readPacks, selectedPack, createPack } from '../actions'
+import { readPacks, selectedPack, createPack } from '../../actions/index'
 import Button from 'material-ui-next/Button'
 import List, { ListItem, ListItemText } from 'material-ui-next/List'
 

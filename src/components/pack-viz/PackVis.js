@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getPackVisData } from '../actions'
-import '../../node_modules/react-vis/dist/style.css';
+import { getPackVisData } from '../../actions/index'
+import '../../../node_modules/react-vis/dist/style.css';
 import Button from 'material-ui-next/Button'
 import {
   XYPlot,

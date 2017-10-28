@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ItemTypes } from './drag-n-drop/constants'
+import { ItemTypes } from '../drag-n-drop/constants'
 import { DropTarget } from 'react-dnd'
-import { deleteCategory } from '../actions'
+import { deleteCategory } from '../../actions/index'
 import _ from 'lodash'
 import {
   Table,
