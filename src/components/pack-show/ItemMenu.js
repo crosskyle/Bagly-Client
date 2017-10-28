@@ -19,7 +19,6 @@ import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui-next/styles'
 
 const styles = theme => ({
-
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -160,11 +159,11 @@ class ItemMenu extends Component {
                   control={
                     <Checkbox
                       checked={this.state.item.worn}
-                      onChange={() => {
+                      onChange={(event) => {
                         this.setState({
                           item: {
                             ...this.state.item,
-                            consumable: !this.state.item.worn
+                            worn: event.target.checked
                           }
                         })
                       }}
@@ -176,11 +175,11 @@ class ItemMenu extends Component {
                   control={
                     <Checkbox
                       checked={this.state.item.consumable}
-                      onChange={() => {
+                      onChange={(event) => {
                         this.setState({
                           item: {
                             ...this.state.item,
-                            consumable: !this.state.item.consumable
+                            consumable: event.target.checked
                           }
                         })
                       }}

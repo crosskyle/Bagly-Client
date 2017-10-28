@@ -29,46 +29,44 @@ class ItemAddModal extends Component {
 
     this.state = {
       open: false,
-      title: '',
-      description: '',
-      weight: '',
-      quantity: '',
-      worn: false,
-      consumable: false
-    }
-
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-  }
-
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
-  onFormSubmit(event) {
-    event.preventDefault();
-
-    let obj = {}
-
-    for (let prop in this.state) {
-      if (prop !== 'open') {
-        obj[prop] = this.state[prop]
+      item: {
+        title: '',
+        description: '',
+        weight: '',
+        quantity: '',
+        worn: false,
+        consumable: false
       }
     }
 
-    this.props.createItemInCategory(this.props.pack.id, this.props.category.id, obj)
+    this.onFormSubmit = this.onFormSubmit.bind(this)
+  }
+
+  handleOpen = () => {
+    this.setState({open: true})
+  }
+
+  handleClose = () => {
+    this.setState({open: false})
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault()
+
+    let { category, pack } = this.props
+
+    this.props.createItemInCategory(pack.id, category.id, this.state.item)
 
     this.setState({
-      title: '',
-      description: '',
-      weight: '',
-      quantity: '',
-      worn: false,
-      consumable: false
-    });
+      item: {
+        title: '',
+        description: '',
+        weight: '',
+        quantity: '',
+        worn: false,
+        consumable: false
+      }
+    })
   }
 
   render() {
@@ -85,13 +83,16 @@ class ItemAddModal extends Component {
           <DialogContent>
             <form onSubmit={this.onFormSubmit}>
               <TextField
-                label="Title"
+                label="Name"
                 className={classes.textField}
                 margin="normal"
                 value={this.state.title}
                 onChange={(event) => {
                   this.setState({
-                    title: event.target.value
+                    item: {
+                      ...this.state.item,
+                      title: event.target.value,
+                    }
                   })
                 }}
               />
@@ -102,7 +103,10 @@ class ItemAddModal extends Component {
                 value={this.state.description}
                 onChange={(event) => {
                   this.setState({
-                    description: event.target.value
+                    item: {
+                      ...this.state.item,
+                      description: event.target.value,
+                    }
                   })
                 }}
               />
@@ -113,7 +117,10 @@ class ItemAddModal extends Component {
                 value={this.state.weight}
                 onChange={(event) => {
                   this.setState({
-                    weight: event.target.value
+                    item: {
+                      ...this.state.item,
+                      weight: event.target.value,
+                    }
                   })
                 }}
               />
@@ -124,7 +131,10 @@ class ItemAddModal extends Component {
                 value={this.state.quantity}
                 onChange={(event) => {
                   this.setState({
-                    quantity: event.target.value
+                    item: {
+                      ...this.state.item,
+                      quantity: event.target.value,
+                    }
                   })
                 }}
               />
@@ -135,7 +145,10 @@ class ItemAddModal extends Component {
                       checked={this.state.worn}
                       onChange={(event) => {
                         this.setState({
-                          worn: event.target.checked
+                          item: {
+                            ...this.state.item,
+                            worn: event.target.checked
+                          }
                         })
                       }}
                     />
@@ -148,7 +161,10 @@ class ItemAddModal extends Component {
                       checked={this.state.consumable}
                       onChange={(event) => {
                         this.setState({
-                          consumable: event.target.checked
+                          item: {
+                            ...this.state.item,
+                            consumable: event.target.checked
+                          }
                         })
                       }}
                     />

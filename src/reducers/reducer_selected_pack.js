@@ -5,6 +5,6 @@ export default function(state = '', action) {
     case SELECTED_PACK:
       return action.payload
     default:
-      return state
+      return '59f40657dd0da50012963c12'
   }
 }

@@ -15,8 +15,8 @@ import IconButton from 'material-ui-next/IconButton'
 import DeleteIcon from 'material-ui-icons/Delete'
 import Paper from 'material-ui-next/Paper'
 
-import ItemAddModal from './ItemAddModal'
-import TableRowItem from './TableRowItem'
+import ItemAddModal from './ItemAdd'
+import TableRowItem from './PackTableItem'
 
 const columnStyle = {
   marginLeft: '0em',

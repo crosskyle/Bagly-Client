@@ -24,7 +24,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 
 import PacksIndex from './drawer/PacksIndex'
 import ItemsIndex from './drawer/ItemsIndex'
-import PacksShow from './pack-show/PacksShow'
+import PacksShow from './pack-show/PackShow'
 import PackVis from './pack-viz/PackVis'
 
 

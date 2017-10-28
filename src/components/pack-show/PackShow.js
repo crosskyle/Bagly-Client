@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import PackEditModal from './PackEdit'
-import PacksTable from './PacksTable'
-import CategoryAddModal from './CategoryAddModal'
+import PackEdit from './PackEdit'
+import PacksTable from './PackTable'
+import CategoryAdd from './CategoryAdd'
 
 class PacksShow extends Component {
 
@@ -26,10 +26,10 @@ class PacksShow extends Component {
 
     return (
       <div style={{marginTop: 10}}>
-        <PackEditModal pack={pack}/>
+        <PackEdit pack={pack}/>
         {this.renderCategories(pack.categories)}
         <br /><br />
-        <CategoryAddModal pack={pack}/>
+        <CategoryAdd pack={pack}/>
       </div>
     )
   }

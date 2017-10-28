@@ -4,18 +4,35 @@ import DeleteIcon from 'material-ui-icons/Delete'
 import EditIcon from 'material-ui-icons/Create'
 import { connect } from 'react-redux'
 import { updatePack, deletePack } from '../../actions/index'
-import FlatButton from 'material-ui/FlatButton'
-import TextField from 'material-ui/TextField'
-import Dialog from 'material-ui/Dialog'
+import Button from 'material-ui-next/Button'
+import TextField from 'material-ui-next/TextField'
+import Dialog, {
+  DialogContent,
+  DialogTitle,
+} from 'material-ui-next/Dialog'
+import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui-next/styles'
 
-class PackEditModal extends Component {
+const styles = theme => ({
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    border: 'yellow',
+    width: 200,
+  }
+})
+
+
+class PackEdit extends Component {
   constructor(props) {
     super(props);
 
+    const { pack } = this.props
+
     this.state = {
       open: false,
-      title: '',
-      description: ''
+      title: pack.title,
+      description: pack.description
     }
 
     this.onFormSubmit = this.onFormSubmit.bind(this)
@@ -38,6 +55,8 @@ class PackEditModal extends Component {
   }
 
   render() {
+    const { classes } = this.props
+
     return (
       <div>
         <span style={{textAlign: 'left', marginLeft: 30}}>{this.props.pack.title}</span>
@@ -57,37 +76,32 @@ class PackEditModal extends Component {
         >
           <DeleteIcon style={{color: "#D3D3D3"}}/>
         </IconButton>
-        <Dialog
-          title="Edit Pack"
-          open={this.state.open}
-          modal={false}
-          onRequestClose={() => this.setState({open: false})}
-        >
-          <form onSubmit={this.onFormSubmit}>
-            <TextField
-              name="title"
-              floatingLabelText="Name"
-              value={this.state.title}
-              onChange={(e) => {this.setState({title: e.target.value})}}
-            />
-            <TextField
-              name="description"
-              floatingLabelText="Description"
-              value={this.state.description}
-              onChange={(e) => {this.setState({description: e.target.value})}}
-            />
-            <FlatButton
-              label="Cancel"
-              style={{color: '#3f51b5'}}
-              onClick={() => this.setState({open: false})}
-            />
-            <FlatButton
-              type="submit"
-              label="Submit"
-              style={{color: '#3f51b5'}}
-              onClick={() => this.setState({open: false})}
-            />
-          </form>
+        <Dialog open={this.state.open} onRequestClose={() => this.setState({open: false})}>
+          <DialogTitle>Edit Pack</DialogTitle>
+          <DialogContent>
+            <form onSubmit={this.onFormSubmit}>
+              <TextField
+                label="Name"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.title}
+                onChange={(e) => {this.setState({title: e.target.value})}}
+              />
+              <TextField
+                label="Description"
+                className={classes.textField}
+                margin="normal"
+                value={this.state.description}
+                onChange={(e) => {this.setState({description: e.target.value})}}
+              />
+              <Button color="primary" onClick={() => this.setState({open: false})}>
+                Cancel
+              </Button>
+              <Button type="submit" color="primary" onClick={() => this.setState({open: false})}>
+                Submit
+              </Button>
+            </form>
+          </DialogContent>
         </Dialog>
         <br/>
         <span style={{textAlign: 'left', marginLeft: 30}}>{this.props.pack.description}</span>
@@ -98,4 +112,10 @@ class PackEditModal extends Component {
   }
 }
 
-export default connect(null, { updatePack, deletePack })(PackEditModal)
+PackEdit.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+PackEdit = withStyles(styles)(PackEdit)
+
+export default connect(null, { updatePack, deletePack })(PackEdit)
