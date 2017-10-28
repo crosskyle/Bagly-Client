@@ -13,6 +13,7 @@ import {
 } from 'material-ui/Table'
 import IconButton from 'material-ui-next/IconButton'
 import DeleteIcon from 'material-ui-icons/Delete'
+import Paper from 'material-ui-next/Paper'
 
 import ItemAddModal from './ItemAddModal'
 import TableRowItem from './TableRowItem'
@@ -53,7 +54,8 @@ class PacksTable extends Component {
     const { category, pack, connectDropTarget } = this.props
 
     return connectDropTarget(
-      <div style={{ paddingLeft: '.5em', paddingRight: '.5em'}} >
+      <div style={{ paddingLeft: '.5em', paddingRight: '.5em', marginTop: '15' }} >
+        <Paper>
         <Table
           fixedHeader={true}
           onRowHover={(d) =>  {}/* console.log(category.items[d])*/}>
@@ -62,7 +64,7 @@ class PacksTable extends Component {
             <TableHeaderColumn colSpan="31" style={{fontSize: '14px'}}>
               {category.title}
             </TableHeaderColumn>
-            <TableHeaderColumn colSpan="4">
+            <TableHeaderColumn style={columnStyle} colSpan="4">
               <IconButton
                 aria-label="Delete"
                 onClick={() => this.props.deleteCategory(pack.id, category.id)} >
@@ -89,7 +91,10 @@ class PacksTable extends Component {
           {this.renderItems(category)}
           </TableBody>
         </Table>
+        </Paper>
+
         <ItemAddModal pack={pack} category={category}/>
+
       </div>
     )
   }
