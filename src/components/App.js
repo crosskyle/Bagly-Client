@@ -69,7 +69,6 @@ class App extends React.Component {
                   onChange={this.handleChange}
                   indicatorColor="primary"
                   textColor="primary"
-                  centered
                 >
                   <Tab icon={<LibraryIcon/>} />
                   <Tab icon={<PollIcon/>} />
