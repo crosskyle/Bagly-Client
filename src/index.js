@@ -17,6 +17,7 @@ import registerServiceWorker from './registerServiceWorker'
 const createStoreWithMiddleware = applyMiddleware(promise, reduxThunk)(createStore)
 const store = createStoreWithMiddleware(reducers)
 
+
 const token = localStorage.getItem('token')
 const userId = localStorage.getItem('userId')
 
@@ -27,6 +28,7 @@ if (token && userId) {
     payload: {id: userId}
   })
 }
+
 
 ReactDOM.render(
   <Provider store={store}>

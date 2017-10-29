@@ -44,12 +44,14 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit * 3,
-    width: 175,
+    width: 125,
   },
   header: {
     marginTop: theme.spacing.unit
+  },
+  error: {
+    color: 'red'
   }
-
 });
 
 
@@ -60,20 +62,63 @@ class Welcome extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      emailError: false,
+      emailErrorText: '',
+      passwordError: false,
+      passwordErrorText: '',
     }
   }
 
   onSignin() {
-    this.props.signinUser(this.state.email, this.state.password)
+    const validEmail = this.emailValidation()
+    const validPassword = this.passwordValidation()
+
+    if (validEmail && validPassword) {
+      this.props.signinUser(this.state.email, this.state.password)
+    }
   }
 
   onSignup() {
-    this.props.signupUser(this.state.email, this.state.password)
+    const validEmail = this.emailValidation()
+    const validPassword = this.passwordValidation()
+
+    if (validEmail && validPassword) {
+      this.props.signupUser(this.state.email, this.state.password)
+    }
+  }
+
+  emailValidation() {
+    const { email } = this.state
+
+    if (!email.includes('@')) {
+      this.setState({ emailError: true, emailErrorText: 'Must be a valid email'})
+      return false
+    }
+    this.setState({ emailError: false, emailErrorText: ''})
+    return true
+  }
+
+  passwordValidation() {
+    const { password } = this.state
+
+    if (password.length < 8) {
+      this.setState({ passwordError: true,
+        passwordErrorText: 'Must be at least 8 characters'})
+      return false
+    }
+    this.setState({ passwordError: false, passwordErrorText: ''})
+    return true
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, auth } = this.props
+
+    let errorMessage = ''
+
+    if (auth.error && auth.error !== '') {
+        errorMessage = auth.error
+    }
 
     return (
       <div className={classes.root}>
@@ -87,6 +132,7 @@ class Welcome extends Component {
             autoComplete="off"
           >
             <TextField
+              error={this.state.emailError}
               id="email"
               label="Email"
               className={classes.textField}
@@ -97,8 +143,10 @@ class Welcome extends Component {
                   email: event.target.value
                 })
               }}
+              helperText={this.state.emailErrorText}
             />
             <TextField
+              error={this.state.passwordError}
               id="password"
               label="Password"
               className={classes.textField}
@@ -111,6 +159,7 @@ class Welcome extends Component {
                   password: event.target.value
                 })
               }}
+              helperText={this.state.passwordErrorText}
             />
           </form>
           <Button
@@ -118,9 +167,9 @@ class Welcome extends Component {
           color="primary"
           className={classes.button}
           onClick={() => this.onSignin()}
-        >
+          >
           signin
-        </Button>
+          </Button>
           <Button
             raised
             color="primary"
@@ -129,18 +178,22 @@ class Welcome extends Component {
           >
             signup
           </Button>
+          <Typography className={classes.error}>{errorMessage}</Typography>
         </Paper>
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return { auth: state.auth }
+}
 
 Welcome.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 Welcome = withStyles(styles)(Welcome)
-Welcome = connect(null, { signinUser, signupUser })(Welcome)
+Welcome = connect(mapStateToProps, { signinUser, signupUser })(Welcome)
 
 export default Welcome
