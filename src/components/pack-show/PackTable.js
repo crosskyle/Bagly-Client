@@ -57,6 +57,7 @@ class PacksTable extends Component {
       <div style={{ paddingLeft: '.5em', paddingRight: '.5em', marginTop: '15px' }} >
         <Paper>
         <Table
+          wrapperStyle={{ maxHeight: 300 }}
           fixedHeader={true}
           onRowHover={(d) =>  {}/* console.log(category.items[d])*/}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
