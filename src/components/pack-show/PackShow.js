@@ -18,8 +18,8 @@ class PacksShow extends Component {
 
     if (!pack) {
       return (
-      <div style={{textAlign: 'center', marginTop: 20}}>
-        Select a pack
+      <div style={{textAlign: 'center', marginTop: 30}}>
+        Open the left pane and add a new pack list or select an existing pack
       </div>
       )
     }

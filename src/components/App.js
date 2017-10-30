@@ -63,7 +63,7 @@ class App extends React.Component {
                   height: 28,
                   padding: 12}}/>
               </IconButton>
-              <div style={{display: 'grid', gridTemplateColumns: '20fr 1fr'}}>
+              <div style={{display: 'grid', gridTemplateColumns: '27fr 1fr'}}>
                 <Tabs
                   value={this.state.slideIndex}
                   onChange={this.handleChange}
