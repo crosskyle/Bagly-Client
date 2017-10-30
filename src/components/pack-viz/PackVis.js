@@ -138,7 +138,7 @@ class PackVis extends Component {
               : null}
           </FlexibleXYPlot>
           <Button
-            onClick={() => { this.setState({vertical: !(this.state.vertical)})}}
+            onClick={() => { this.setState({value: null, vertical: !(this.state.vertical)})}}
             color="primary"
             style={{marginTop: 12, marginLeft: 12}}
           >
@@ -178,7 +178,7 @@ class PackVis extends Component {
             : null}
         </FlexibleXYPlot>
         <Button
-          onClick={() => { this.setState({vertical: !(this.state.vertical)})}}
+          onClick={() => { this.setState({value: null, vertical: !(this.state.vertical)})}}
           color="primary"
           style={{marginTop: 12, marginLeft: 12}}
         >
