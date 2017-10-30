@@ -114,7 +114,7 @@ class PackVis extends Component {
             stackBy="x"
             margin={{left: 90, right: 40}}
             yType={'ordinal'}
-            height={400}
+            height={550}
           >
             <XAxis />
             <YAxis style={{text: {marginLeft: 20}}}/>
@@ -154,7 +154,7 @@ class PackVis extends Component {
           stackBy="y"
           margin={{left: 60, right: 35}}
           xType={'ordinal'}
-          height={400}
+          height={550}
         >
           <XAxis />
           <YAxis style={{text: {marginLeft: 20}}}/>
