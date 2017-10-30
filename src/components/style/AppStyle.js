@@ -15,7 +15,7 @@ const styles = theme => ({
     width: '100%',
   },
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     backgroundColor: 'white',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -38,7 +38,7 @@ const styles = theme => ({
     display: 'none',
   },
   drawerPaper: {
-    position: 'relative',
+    position: 'fixed',
     height: '100%',
     width: drawerWidth,
   },
@@ -54,7 +54,7 @@ const styles = theme => ({
   },
   content: {
     width: '100%',
-    marginLeft: -(drawerWidth+5),
+
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     transition: theme.transitions.create('margin', {
@@ -69,7 +69,7 @@ const styles = theme => ({
     },
   },
   contentShift: {
-    marginLeft: 0,
+    marginLeft: 200,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,

@@ -54,7 +54,7 @@ class PacksTable extends Component {
     const { category, pack, connectDropTarget } = this.props
 
     return connectDropTarget(
-      <div style={{ paddingLeft: '.5em', paddingRight: '.5em', marginTop: '15' }} >
+      <div style={{ paddingLeft: '.5em', paddingRight: '.5em', marginTop: '15px' }} >
         <Paper>
         <Table
           fixedHeader={true}
