@@ -94,7 +94,7 @@ class PackVis extends Component {
     if (!pack) {
       return (
         <div style={{textAlign: 'center', marginTop: 20}}>
-          Select a pack
+          Open the left pane and add a new pack list or select an existing pack
         </div>
       )
     }
@@ -102,7 +102,7 @@ class PackVis extends Component {
     if (packVisData.length === 0) {
       return (
         <div style={{textAlign: 'center', marginTop: 20}}>
-          Pack is empty
+          Current pack is empty
         </div>
       )
     }
@@ -142,7 +142,7 @@ class PackVis extends Component {
             color="primary"
             style={{marginTop: 12, marginLeft: 12}}
           >
-            Toggle
+            Make vertical
           </Button>
         </div>
       )
@@ -182,7 +182,7 @@ class PackVis extends Component {
           color="primary"
           style={{marginTop: 12, marginLeft: 12}}
         >
-          Toggle
+          Make horizontal
         </Button>
       </div>
     )

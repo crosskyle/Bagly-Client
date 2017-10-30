@@ -1,4 +1,4 @@
-const drawerWidth = 200;
+const drawerWidth = 160;
 
 const styles = theme => ({
   root: {
@@ -23,8 +23,6 @@ const styles = theme => ({
     }),
   },
   appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -69,7 +67,7 @@ const styles = theme => ({
     },
   },
   contentShift: {
-    marginLeft: 200,
+    marginLeft: drawerWidth,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
