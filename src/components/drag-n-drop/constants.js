@@ -1,3 +1,3 @@
 export const ItemTypes = {
-  DRAWER_ITEM: 'drawer_item'
+  DRAWER_ITEM: 'drawer_item',
 };

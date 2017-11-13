@@ -309,6 +309,28 @@ export function removeItemFromList(packId, categoryId, itemId) {
   }
 }
 
+export function removeItemFromListDnd(categoryEndpoint, itemId) {
+  console.log(`${ROOT_URL}${categoryEndpoint}/items/${itemId}`)
+  return function(dispatch) {
+    axios.delete(`${ROOT_URL}${categoryEndpoint}/items/${itemId}`)
+      .then((resp) => {
+        console.log(resp)
+        dispatch({
+          type: READ_PACK,
+          payload: resp.data
+        })
+        return resp
+      })
+      .then((resp) => {
+        let series = updatePackVis(resp.data)
+        dispatch({
+          type: PACK_VIS,
+          payload: series
+        })
+      })
+  }
+}
+
 export function updateItem(packId, categoryId, itemId, item) {
   const USER_ID = localStorage.getItem('userId')
   const response = axios.patch(`${ROOT_URL}/api/users/${USER_ID}/packs/${packId}/categories/${categoryId}/items/${itemId}`, item)
