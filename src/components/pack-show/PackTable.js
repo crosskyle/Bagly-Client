@@ -31,6 +31,16 @@ const categoryTarget = {
   drop(props) {
     return props
   },
+  canDrop(props, monitor) {
+    let itemId = monitor.getItem().id
+
+    for (let i = 0; i < props.category.items.length; i++) {
+      if (props.category.items[i].id === itemId) {
+        return false
+      }
+    }
+    return true
+  }
 }
 
 function collect(connect, monitor) {
