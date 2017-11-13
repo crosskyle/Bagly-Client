@@ -310,11 +310,9 @@ export function removeItemFromList(packId, categoryId, itemId) {
 }
 
 export function removeItemFromListDnd(categoryEndpoint, itemId) {
-  console.log(`${ROOT_URL}${categoryEndpoint}/items/${itemId}`)
   return function(dispatch) {
     axios.delete(`${ROOT_URL}${categoryEndpoint}/items/${itemId}`)
       .then((resp) => {
-        console.log(resp)
         dispatch({
           type: READ_PACK,
           payload: resp.data
