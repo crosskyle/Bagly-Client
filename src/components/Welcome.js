@@ -7,27 +7,30 @@ import Paper from 'material-ui-next/Paper'
 import Typography from 'material-ui-next/Typography'
 import TextField from 'material-ui-next/TextField'
 import Button from 'material-ui-next/Button'
+import { LinearProgress } from 'material-ui-next/Progress'
 
 
 const styles = theme => ({
   root: {
     height: '100vh',
     backgroundColor: theme.palette.background.default,
-    padding: 16,
+
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
-  paper: theme.mixins.gutters({
-    paddingTop: 40,
+  paper: {
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
     paddingBottom: 30,
-    marginLeft: theme.spacing.unit * 6,
+
     marginRight: theme.spacing.unit * 6,
     marginTop: theme.spacing.unit * 6,
     flexDirection: 'column',
     textAlign: 'center',
     alignItems: 'center',
-  }),
+  },
   form:{
     display: 'flex',
     flexDirection: 'column',
@@ -47,12 +50,17 @@ const styles = theme => ({
     width: 125,
   },
   header: {
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit * 3
   },
   error: {
     color: 'red'
-  }
-});
+  },
+  progress: {
+    width: '100%',
+    paddingLeft: 0,
+    marginTop: 0,
+  },
+})
 
 
 class Welcome extends Component {
@@ -67,7 +75,10 @@ class Welcome extends Component {
       emailErrorText: '',
       passwordError: false,
       passwordErrorText: '',
+      showProgress: false
     }
+
+
   }
 
   onSignin() {
@@ -76,6 +87,7 @@ class Welcome extends Component {
 
     if (validEmail && validPassword) {
       this.props.signinUser(this.state.email, this.state.password)
+      this.setState({ showProgress: true })
     }
   }
 
@@ -85,6 +97,7 @@ class Welcome extends Component {
 
     if (validEmail && validPassword) {
       this.props.signupUser(this.state.email, this.state.password)
+      this.setState({ showProgress: true })
     }
   }
 
@@ -111,6 +124,12 @@ class Welcome extends Component {
     return true
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.error) {
+      this.setState({ showProgress: false })
+    }
+  }
+
   render() {
     const { classes, auth } = this.props
 
@@ -122,7 +141,10 @@ class Welcome extends Component {
 
     return (
       <div className={classes.root}>
-        <Paper className={classes.paper} elevation={4}>
+        <Paper className={classes.paper} >
+
+          { this.state.showProgress && <LinearProgress className={classes.progress}/> }
+
           <Typography className={classes.header} type="headline" component="h3">
             Welcome to Bagly
           </Typography>
